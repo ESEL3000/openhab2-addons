@@ -146,6 +146,7 @@ public class UniFiClientHandler extends BaseThingHandler {
             }
             boolean clientOnline = controller.isWirelessClientOnline(client);
             UniFiDevice device = (client == null ? null : client.getDevice());
+            UniFiSite site = (device == null ? null : device.getSite());
 
             String channelID = channelUID.getIdWithoutGroup();
             State state = getDefaultState(channelID, clientOnline);
@@ -162,28 +163,14 @@ public class UniFiClientHandler extends BaseThingHandler {
 
                 // :site
                 case CHANNEL_SITE:
-                    if (clientOnline) {
-                        if (device == null) {
-                            logger.warn("Unable to update channel '{}' : device == null", CHANNEL_SITE);
-                            break;
-                        }
-                        UniFiSite site = device.getSite();
-                        if (site == null) {
-                            logger.warn("Unable to update channel '{}' : device == {}, site == null", CHANNEL_SITE,
-                                    device.getName());
-                            break;
-                        }
+                    if (clientOnline && site != null && StringUtils.isNotBlank(site.getName())) {
                         state = StringType.valueOf(site.getName());
                     }
                     break;
 
                 // :ap
                 case CHANNEL_AP:
-                    if (clientOnline) {
-                        if (device == null) {
-                            logger.warn("Unable to update channel '{}' : device == null", CHANNEL_AP);
-                            break;
-                        }
+                    if (clientOnline && device != null && StringUtils.isNotBlank(device.getName())) {
                         state = StringType.valueOf(device.getName());
                     }
                     break;
