@@ -162,28 +162,28 @@ public class UniFiClientHandler extends BaseThingHandler {
 
                 // :site
                 case CHANNEL_SITE:
-                    if (device == null) {
-                        logger.warn("Unable to update channel '{}' : device == null", CHANNEL_SITE);
-                        break;
-                    }
-                    UniFiSite site = device.getSite();
-                    if (site == null) {
-                        logger.warn("Unable to update channel '{}' : device == {}, site == null", CHANNEL_SITE,
-                                device.getName());
-                        break;
-                    }
                     if (clientOnline) {
+                        if (device == null) {
+                            logger.warn("Unable to update channel '{}' : device == null", CHANNEL_SITE);
+                            break;
+                        }
+                        UniFiSite site = device.getSite();
+                        if (site == null) {
+                            logger.warn("Unable to update channel '{}' : device == {}, site == null", CHANNEL_SITE,
+                                    device.getName());
+                            break;
+                        }
                         state = StringType.valueOf(site.getName());
                     }
                     break;
 
                 // :ap
                 case CHANNEL_AP:
-                    if (device == null) {
-                        logger.warn("Unable to update channel '{}' : device == null", CHANNEL_AP);
-                        break;
-                    }
                     if (clientOnline) {
+                        if (device == null) {
+                            logger.warn("Unable to update channel '{}' : device == null", CHANNEL_AP);
+                            break;
+                        }
                         state = StringType.valueOf(device.getName());
                     }
                     break;
