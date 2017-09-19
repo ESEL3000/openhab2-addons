@@ -25,14 +25,14 @@ You need at least one UniFi Controller (Bridge) for this binding to work. It req
 
 The following table describes the Bridge configuration parameters:
 
-| Parameter | Description                                                              | Config | Default |
-|-----------|------------------------------------------------------------------------- | - | - |
-| host      | Hostname of IP address of the UniFi Controller | Required | - |
-| port      | Port of the UniFi Controller | Required | - |
-| username  | The username to access the UniFi Controller | Required | - |
-| password  | The password to access the UniFi Controller | Required | - |
-| refresh   | Refresh interval in seconds | Optional | 10 |
-| considerHome<sup>1</sup> | Consider home interval in seconds | Optional | 180 |
+| Parameter                | Description                                    | Config   | Default |
+| ------------------------ | ---------------------------------------------- |--------- | ------- |
+| host                     | Hostname of IP address of the UniFi Controller | Required | -       |
+| port                     | Port of the UniFi Controller                   | Required | -       |
+| username                 | The username to access the UniFi Controller    | Required | -       |
+| password                 | The password to access the UniFi Controller    | Required | -       |
+| refresh                  | Refresh interval in seconds                    | Optional | 10      |
+| considerHome<sup>1</sup> | Consider home interval in seconds              | Optional | 180     |
 
 <sup>1</sup> The `considerHome` parameter allows you to control how quickly the binding marks a client as away. For example, using the default of `180` (seconds), the binding will report a client away as soon as `lastSeen` + `180` (seconds) < `now`
 
@@ -42,11 +42,11 @@ You must define a UniFi Controller (Bridge) before defining UniFi Wireless Clien
 
 The following table describes the Thing configuration parameters:
 
-| Parameter | Description                                                              | Options |
-|-----------|------------------------------------------------------------------------- | ------- |
-| mac       | The MAC address of the Wireless Client (Required) |  |
-| site<sup>1</sup>      | The site name where the Wireless Client should be found (Optional) |  |
-| contactType<sup>2</sup> | The contact type for the online channel (Required) | `NO`, `NC` |
+| Parameter               | Description                                             | Config   | Default | Options    |
+| ----------------------- | ------------------------------------------------------- |--------- | ------- |----------- |
+| mac                     | The MAC address of the Wireless Client                  | Required | -       | -          |
+| site<sup>1</sup>        | The site name where the Wireless Client should be found | Optional |         | -          |
+| contactType<sup>2</sup> | The contact type for the online channel                 | Optional | `NO`    | `NO`, `NC` |
 
 <sup>1</sup> Note the `site` configuration parameter is optional. If you leave it blank, the Wireless Client will appear `ONLINE` if found in *any* site defined on the UniFi Controller. 
 

@@ -71,7 +71,7 @@
                 <label>Site</label>
                 <description>The UniFi site where the client should be found (optional)</description>
             </parameter>
-            <parameter name="contactType" type="text" required="true">
+            <parameter name="contactType" type="text" required="false">
                 <label>Contact Type</label>
                 <description>The contact type for the online channel</description>
                 <options>
