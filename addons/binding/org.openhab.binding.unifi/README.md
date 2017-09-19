@@ -45,7 +45,7 @@ The following table describes the Thing configuration parameters:
 | Parameter               | Description                                             | Config   | Default | Options    |
 | ----------------------- | ------------------------------------------------------- |--------- | ------- |----------- |
 | mac                     | The MAC address of the Wireless Client                  | Required | -       | -          |
-| site<sup>1</sup>        | The site name where the Wireless Client should be found | Optional |         | -          |
+| site<sup>1</sup>        | The site name where the Wireless Client should be found | Optional | -       | -          |
 | contactType<sup>2</sup> | The contact type for the online channel                 | Optional | `NO`    | `NO`, `NC` |
 
 <sup>1</sup> Note the `site` configuration parameter is optional. If you leave it blank, the Wireless Client will appear `ONLINE` if found in *any* site defined on the UniFi Controller. 
