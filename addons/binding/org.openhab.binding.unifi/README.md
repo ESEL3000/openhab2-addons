@@ -48,9 +48,9 @@ The following table describes the Thing configuration parameters:
 | site<sup>1</sup>        | The site name where the Wireless Client should be found | Optional | -       | -          |
 | contactType<sup>2</sup> | The contact type for the online channel                 | Optional | `NO`    | `NO`, `NC` |
 
-<sup>1</sup> Note the `site` configuration parameter is optional. If you leave it blank, the Wireless Client will appear `ONLINE` if found in *any* site defined on the UniFi Controller. 
+<sup>1</sup> The `site` configuration parameter is optional. If you leave it blank, the Wireless Client will appear `ONLINE` if found in *any* site defined on the UniFi Controller. 
 
-You may use the `site` parameter as a filter if you only want the Wireless Client to appear `ONLINE` if it's found in the UniFi Site defined in the `site` parameter.
+You may use the `site` parameter as a filter if you only want the Wireless Client to appear home if it's found in the UniFi Site defined in the `site` parameter.
 
 Additionally, you may use friendly site names as they appear in the controller web UI.
 
