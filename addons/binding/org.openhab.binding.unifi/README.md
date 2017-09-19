@@ -34,7 +34,7 @@ The following table describes the Bridge configuration parameters:
 | refresh   | Refresh interval in seconds | Optional | 10 |
 | considerHome<sup>1</sup> | Consider home interval in seconds | Optional | 180 |
 
-<sup>1</sup> The `considerHome` parameter allows you to control how quickly the binding marks a client as away. For example, using the default of `180` (seconds), the binding will report a client away as soon as `now` + `180` (seconds) > `lastSeen` as reported by the controller.
+<sup>1</sup> The `considerHome` parameter allows you to control how quickly the binding marks a client as away. For example, using the default of `180` (seconds), the binding will report a client away as soon as `lastSeen` + `180` (seconds) < `now`
 
 ## Thing Configuration
 
