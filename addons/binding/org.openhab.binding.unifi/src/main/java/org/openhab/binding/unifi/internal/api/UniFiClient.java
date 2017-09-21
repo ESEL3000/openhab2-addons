@@ -8,6 +8,7 @@
  */
 package org.openhab.binding.unifi.internal.api;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.openhab.binding.unifi.internal.api.json.UniFiMacDeserializer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  *
  * @author Matthew Bowman - Initial contribution
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "is_wired")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "is_wired", defaultImpl = UniFiUnknownClient.class)
 @JsonSubTypes({ @JsonSubTypes.Type(value = UniFiWiredClient.class, name = "true"),
         @JsonSubTypes.Type(value = UniFiWirelessClient.class, name = "false") })
 public abstract class UniFiClient {
@@ -36,15 +37,7 @@ public abstract class UniFiClient {
     @JsonProperty("site_id")
     protected String siteId;
 
-    protected Boolean wired = false;
-
     protected UniFiDevice device;
-
-    protected boolean online = false;
-
-    protected UniFiClient(boolean wired) {
-        this.wired = wired;
-    }
 
     public String getId() {
         return id;
@@ -82,19 +75,17 @@ public abstract class UniFiClient {
         this.siteId = siteId;
     }
 
-    public final boolean isWired() {
-        return wired;
-    };
+    public abstract Boolean isWired();
 
-    public final boolean isWireless() {
-        return !wired;
+    public final Boolean isWireless() {
+        return BooleanUtils.negate(isWired());
     }
 
     public abstract String getDeviceMac();
 
     @Override
     public String toString() {
-        return String.format("UniFiClient{mac: '%s', hostname: '%s', wired: %b, device: %s}", mac, hostname, wired,
+        return String.format("UniFiClient{mac: '%s', hostname: '%s', wired: %b, device: %s}", mac, hostname, isWired(),
                 device);
     }
 

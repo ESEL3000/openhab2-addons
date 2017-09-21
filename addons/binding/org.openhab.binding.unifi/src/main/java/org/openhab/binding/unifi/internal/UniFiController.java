@@ -31,6 +31,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.openhab.binding.unifi.internal.api.UniFiClient;
 import org.openhab.binding.unifi.internal.api.UniFiDevice;
@@ -326,7 +327,7 @@ public class UniFiController {
         UniFiClient client = clientsCache.get(mac);
 
         // mgb: short circuit
-        if (client == null || !client.isWired() || !belongsToSite(client, site)) {
+        if (client == null || BooleanUtils.isNotTrue(client.isWired()) || !belongsToSite(client, site)) {
             return null;
         }
 
@@ -339,7 +340,7 @@ public class UniFiController {
         UniFiClient client = clientsCache.containsKey(mac) ? clientsCache.get(mac) : insightsCache.get(mac);
 
         // mgb: short circuit
-        if (client == null || !client.isWireless() || !belongsToSite(client, site)) {
+        if (client == null || BooleanUtils.isNotTrue(client.isWireless()) || !belongsToSite(client, site)) {
             return null;
         }
 

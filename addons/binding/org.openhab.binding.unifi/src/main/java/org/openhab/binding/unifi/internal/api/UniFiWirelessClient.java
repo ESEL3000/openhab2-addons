@@ -38,10 +38,6 @@ public class UniFiWirelessClient extends UniFiClient {
     @JsonDeserialize(using = UniFiTimestampDeserializer.class)
     private Calendar lastSeen;
 
-    public UniFiWirelessClient() {
-        super(false); // mgb: false = wireless
-    }
-
     public Integer getRssi() {
         return rssi;
     }
@@ -69,6 +65,11 @@ public class UniFiWirelessClient extends UniFiClient {
 
     public void setUptime(Integer uptime) {
         this.uptime = uptime;
+    }
+
+    @Override
+    public Boolean isWired() {
+        return true;
     }
 
 }

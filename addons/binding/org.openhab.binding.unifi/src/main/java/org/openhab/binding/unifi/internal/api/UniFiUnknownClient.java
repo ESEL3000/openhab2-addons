@@ -8,27 +8,22 @@
  */
 package org.openhab.binding.unifi.internal.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  *
  * FIXME
  *
  * @author Matthew Bowman - Initial contribution
  */
-public class UniFiWiredClient extends UniFiClient {
-
-    @JsonProperty("sw_mac")
-    private String swMac;
+public class UniFiUnknownClient extends UniFiClient {
 
     @Override
     public Boolean isWired() {
-        return true;
+        return null; // mgb: no is_wired property in the json
     }
 
     @Override
     public String getDeviceMac() {
-        return swMac;
+        return null; // mgb: no device mac in the json
     }
 
 }
